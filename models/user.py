@@ -15,7 +15,7 @@ class User(db.Model):
 # used to fetch information from db for dump
 class UserSchema(ma.Schema):
     class Meta:
-        fields = ("id", "name", "email", "passwords", "is_admin")
+        fields = ("id", "name", "email", "password", "is_admin")
 
 # to handle a single user object
 user_schema = UserSchema(exclude=["password"])
