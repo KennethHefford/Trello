@@ -1,4 +1,5 @@
 from init import db, ma
+from marshmallow import fields
 
 
 class User(db.Model):
@@ -15,7 +16,8 @@ class User(db.Model):
 # used to fetch information from db for dump
 class UserSchema(ma.Schema):
     class Meta:
-        fields = ("id", "name", "email", "password", "is_admin")
+        cards = fields.list(fields.Nested('CardSchema', exclude =["user"]))
+        fields = ("id", "name", "email", "password", "is_admin", "cards")
 
 # to handle a single user object
 user_schema = UserSchema(exclude=["password"])

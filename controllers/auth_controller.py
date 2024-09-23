@@ -52,3 +52,4 @@ def login_user():
     else:
         # respond back with an error 
         return {"error": "Invalid email or password"}, 400
+    
