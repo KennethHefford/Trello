@@ -1,22 +1,22 @@
 from init import db, ma
 from marshmallow import fields
 
-class Card(db.model):
+class Card(db.Model):
     __tablename__ = "cards"
     
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String, nullabul=False)
+    title = db.Column(db.String, nullable=False)
     description = db.Column(db.String)
     status = db.Column(db.String)
     priority = db.Column(db.String)
-    data = db.Column(db.Date) #created date
+    date = db.Column(db.Date) #created date
 
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable = False)
 
-    user = db.relationship('Model_name', back_populates ='cards')
+    user = db.relationship('User', back_populates ='cards')
 
 
-class CardSchema(ma.Schema)
+class CardSchema(ma.Schema):
     user = fields.Nested('UserSchema', only = ["id", "name", "email"])
 
     class Meta:
